@@ -1,1 +1,34 @@
-<p>user-perfil works!</p>
+<div class="container-profile d-flex flex-row align-items-center mt-5">
+    <div class="w-50">
+        <img id="imgProfile" src="{{user.image}}" class="d-block mx-auto rounded-circle shadow-lg" alt="...">
+    </div>
+    <div class="container-profile-data w-50 border-start border-2 border-dark p-5">
+        <h2>{{user.first_name}}</h2>
+        <h2>{{user.last_name}}</h2>
+
+        <p><strong>Nombre de usuario: </strong>{{user.username}}</p>
+        <p><strong>Email: </strong>{{user.email}}</p>
+
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-outline-dark">Eliminar</button>
+            <button type="button" class="btn btn-outline-dark">Actualizar</button>
+            <button type="button" class="btn btn-outline-dark">Volver al listado</button>
+        </div>
+
+    </div>
+</div>
+
+<!-- <div class="mt-5" style="max-width: 1440px;">
+    <div class="row g-5">
+      <div class="col-md-4">
+        <img src="https://via.placeholder.com/150 " class="img-fluid  d-block float-end rounded-circle w-100" alt="...">
+      </div>
+      <div class="col-md-8 border-start">
+        <div class="card-body">
+          <h5 class="card-title">Título de la tarjeta</h5>
+          <p class="card-text">Esta es una tarjeta más amplia con texto de apoyo a continuación como introducción natural a contenido adicional. Este contenido es un poco más largo.</p>
+          <p class="card-text"><small class="text-muted">Última actualización hace 3 minutos</small></p>
+        </div>
+      </div>
+    </div>
+  </div> -->

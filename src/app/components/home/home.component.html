@@ -1,30 +1,43 @@
-<div class="container mt-4">
-  <div class="row row-cols-md-4 g-4">
-    <div class="col" *ngFor="let item of usersList">
-      <div class="card pt-3 h-100 shadow" >
-        <img
-          src="{{item.image}}"
-          class="m-auto d-block float-end rounded-circle w-75"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title text-center mb-4">{{item.first_name}} {{item.last_name}}</h5>
-          <div class="d-flex justify-content-around">
-            <div class="text-center">
-              <i class="fa-solid fa-magnifying-glass"></i>
-              <p class="card-title">Ver detalles</p>
-            </div>
-            <div class="text-center">
-              <i class="fa-solid fa-arrow-rotate-right"></i>
-              <p class="card-title">Actualizar</p>
-            </div>
-            <div class="text-center">
-              <i class="fa-solid fa-trash-can"></i>
-              <p class="card-title">Borrar</p>
-            </div>
-          </div>
+<div class="row row-cols-md-4 g-4">
+  <div class="col" *ngFor="let item of usersList">
+    <div class="card pt-3 h-100 shadow text-dark bg-light">
+      <img
+        src="{{ item?.image }}"
+        class="m-auto d-block float-end rounded-circle w-75"
+        alt="..."
+      />
+      <div class="card-body">
+        <h5 class="card-title text-center">
+          {{ item?.first_name }} {{ item?.last_name }}
+        </h5>
+      </div>
+      <div class="d-flex justify-content-around card-footer py-3">
+        <div class="text-center">
+          <i class="fa-solid fa-magnifying-glass" [routerLink]="['/user', item._id]" routerLinkActive="router-link-active"></i>
+          <p class="text-muted">Ver detalles</p>
+        </div>
+        <div class="text-center">
+          <i class="fa-solid fa-arrow-rotate-right"></i>
+          <p class="text-muted">Actualizar</p>
+        </div>
+        <div class="text-center">
+          <i class="fa-solid fa-trash-can"></i>
+          <p class="text-muted">Borrar</p>
         </div>
       </div>
     </div>
   </div>
 </div>
+<nav aria-label="Page navigation example" class="mt-4">
+  <ul class="pagination justify-content-center">
+    <li class="page-item disabled">
+      <a class="page-link">Anterior</a>
+    </li>
+    <li class="page-item"><a class="page-link" href="#">1</a></li>
+    <li class="page-item"><a class="page-link" href="#">2</a></li>
+    <li class="page-item"><a class="page-link" href="#">3</a></li>
+    <li class="page-item">
+      <a class="page-link" href="#">Siguiente</a>
+    </li>
+  </ul>
+</nav>

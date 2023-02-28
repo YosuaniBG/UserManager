@@ -1,1 +1,65 @@
-<p>formulary works!</p>
+<p class="fs-1">NUEVO USUARIO</p>
+
+<form [formGroup]="signForm" (ngSubmit)="enviar(signForm.value)">
+  <div class="mb-4">
+    <label for="name" class="form-label"><small class="h5 text-danger">* </small>Nombre de usuario</label>
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control"
+      [ngClass]="{'is-invalid': signForm.controls['name'].touched && signForm.controls['name'].invalid, 'is-valid': signForm.controls['name'].valid}"
+      id="name"
+      placeholder="Escriba su nombre de usuario"
+    />
+      <div class="invalid-feedback" *ngIf="signForm.controls['name'].touched && signForm.controls['name'].invalid">
+        <p *ngIf="signForm.controls['name'].errors?.['required']">Por favor, elije un nombre de usuario, este campo es OBLIGATORIO</p>
+        <p *ngIf="signForm.controls['name'].errors?.['minlength']">La longitud debe ser mayo de 3 caracteres</p>
+      </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="last-name" class="form-label"><small class="h5 text-danger">* </small>Apellidos de usuario</label>
+    <input
+      formControlName="last_name"
+      type="text"
+      class="form-control"
+      [ngClass]="{'is-invalid': signForm.controls['last_name'].touched && signForm.controls['last_name'].invalid, 'is-valid': signForm.controls['last_name'].valid}"
+      id="last-name"
+      placeholder="Escriba sus apellidos"
+    />
+    <div class="invalid-feedback" *ngIf="signForm.controls['last_name'].touched && signForm.controls['last_name'].invalid">
+      <p *ngIf="signForm.controls['last_name'].errors?.['required']">Por favor, ponga sus apellidos, este campo es OBLIGATORIO</p>
+      <p *ngIf="signForm.controls['last_name'].errors?.['minlength']">La longitud debe ser mayo de 2 caracteres</p>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="email" class="form-label"><small class="h5 text-danger">* </small>Email usuario</label>
+    <input
+      formControlName="email"
+      type="email"
+      class="form-control"
+      [ngClass]="{'is-invalid': signForm.controls['email'].touched && signForm.controls['email'].invalid, 'is-valid': signForm.controls['email'].valid}"
+      id="email"
+      placeholder="Ejemplo de input placeholder"
+    />
+    <div class="invalid-feedback" *ngIf="signForm.controls['email'].touched && signForm.controls['email'].invalid">
+      <p *ngIf="signForm.controls['email'].errors?.['required']">Por favor, ponga su correo electrónico, este campo es OBLIGATORIO</p>
+      <p *ngIf="signForm.controls['email'].errors?.['email']">Su correo electrónico no es válido</p>
+    </div>
+  </div>
+
+  <div class="mb-4">
+    <label for="imagen" class="form-label">Imagen usuario</label>
+    <input
+      formControlName="image"
+      type="text"
+      class="form-control"
+      [ngClass]="{'is-valid': signForm.controls['email'].touched}"
+      id="imagen"
+      placeholder="Seleccione una imagen"
+    />
+  </div>
+
+  <button [disabled]="signForm.invalid" type="submit" class="btn btn-primary">Guardar</button>
+</form>

@@ -17,4 +17,8 @@ export class UsersService {
   getAll(): Observable<any>{
     return this.httpClient.get<any>(this.url);
   }
+
+  getOne(userId: string):Observable<User>{   
+    return this.httpClient.get<User>(this.url+'/'+userId)
+  }
 }
