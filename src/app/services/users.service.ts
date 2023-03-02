@@ -9,16 +9,24 @@ import { Observable } from 'rxjs';
 export class UsersService {
 
  
-  url: string ="https://peticiones.online/api/users";
+  private url: string ="https://peticiones.online/api/users";
 
   constructor(private httpClient: HttpClient) { 
   }
 
-  getAll(): Observable<any>{
+  getUsers(): Observable<any>{
     return this.httpClient.get<any>(this.url);
   }
 
-  getOne(userId: string):Observable<User>{   
+  createUser(user: User): Observable<User>{
+    return this.httpClient.post<User>(this.url, user)
+  }
+
+  readUser(userId: string):Observable<User>{   
     return this.httpClient.get<User>(this.url+'/'+userId)
+  }
+
+  updateUser(user: User): Observable<User>{
+    return this.httpClient.put<User>(`${this.url}/${user.id}`, user)
   }
 }

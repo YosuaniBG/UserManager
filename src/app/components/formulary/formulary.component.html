@@ -1,19 +1,19 @@
-<p class="fs-1">NUEVO USUARIO</p>
+<p class="fs-1">{{title}}</p>
 
 <form [formGroup]="signForm" (ngSubmit)="enviar(signForm.value)">
   <div class="mb-4">
-    <label for="name" class="form-label"><small class="h5 text-danger">* </small>Nombre de usuario</label>
+    <label for="first_name" class="form-label"><small class="h5 text-danger">* </small>Nombre de usuario</label>
     <input
-      formControlName="name"
+      formControlName="first_name"
       type="text"
       class="form-control"
-      [ngClass]="{'is-invalid': signForm.controls['name'].touched && signForm.controls['name'].invalid, 'is-valid': signForm.controls['name'].valid}"
-      id="name"
+      [ngClass]="{'is-invalid': signForm.controls['first_name'].touched && signForm.controls['first_name'].invalid, 'is-valid': signForm.controls['first_name'].valid}"
+      id="first_name"
       placeholder="Escriba su nombre de usuario"
     />
-      <div class="invalid-feedback" *ngIf="signForm.controls['name'].touched && signForm.controls['name'].invalid">
-        <p *ngIf="signForm.controls['name'].errors?.['required']">Por favor, elije un nombre de usuario, este campo es OBLIGATORIO</p>
-        <p *ngIf="signForm.controls['name'].errors?.['minlength']">La longitud debe ser mayo de 3 caracteres</p>
+      <div class="invalid-feedback" *ngIf="signForm.controls['first_name'].touched && signForm.controls['first_name'].invalid">
+        <p *ngIf="signForm.controls['first_name'].errors?.['required']">Por favor, elije un nombre de usuario, este campo es OBLIGATORIO</p>
+        <p *ngIf="signForm.controls['first_name'].errors?.['minlength']">La longitud debe ser mayo de 3 caracteres</p>
       </div>
   </div>
 

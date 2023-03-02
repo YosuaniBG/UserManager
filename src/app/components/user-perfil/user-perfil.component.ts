@@ -25,8 +25,8 @@ export class UserPerfilComponent implements OnInit{
     ){ }
 
   ngOnInit(): void {
-    this.activateRoute.params.subscribe(params =>{
-      this.userService.getOne(params['id']).subscribe(data => {
+    this.activateRoute.params.subscribe((params: any) =>{
+      this.userService.readUser(params['id']).subscribe(data => {
         this.user = data;               
       })   
     })

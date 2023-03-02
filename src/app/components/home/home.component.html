@@ -2,7 +2,7 @@
   <div class="col" *ngFor="let item of usersList">
     <div class="card pt-3 h-100 shadow text-dark bg-light">
       <img
-        src="{{ item?.image }}"
+        [src]="item?.image"
         class="m-auto d-block float-end rounded-circle w-75"
         alt="..."
       />
@@ -17,7 +17,7 @@
           <p class="text-muted">Ver detalles</p>
         </div>
         <div class="text-center">
-          <i class="fa-solid fa-arrow-rotate-right"></i>
+          <i class="fa-solid fa-arrow-rotate-right" [routerLink]="['/updateuser', item._id]" routerLinkActive="router-link-active" ></i>
           <p class="text-muted">Actualizar</p>
         </div>
         <div class="text-center">
