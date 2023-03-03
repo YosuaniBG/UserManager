@@ -25,7 +25,7 @@ export class FormularyComponent implements OnInit {
     ){
     this.signForm = this.builder.group({
       first_name: new FormControl('', [Validators.required, Validators.minLength(3)]),
-      last_name: new FormControl('',[ Validators.required, Validators.minLength(2)]),
+      last_name: new FormControl('', [ Validators.required, Validators.minLength(2)]),
       email: new FormControl('', [Validators.required, Validators.email]),
       image: new FormControl(''),
     }) 
@@ -39,9 +39,9 @@ export class FormularyComponent implements OnInit {
         this.userService.readUser(params['id']).subscribe(data => {
           this.signForm = new FormGroup({
             id: new FormControl(params.id),
-            first_name: new FormControl(data?.first_name),
-            last_name: new FormControl(data?.last_name),
-            email: new FormControl(data?.email),
+            first_name: new FormControl(data?.first_name, [Validators.required, Validators.minLength(3)]),
+            last_name: new FormControl(data?.last_name,[ Validators.required, Validators.minLength(2)]),
+            email: new FormControl(data?.email, [Validators.required, Validators.email]),
             image: new FormControl(data?.image),
           })
         });   
@@ -74,7 +74,6 @@ export class FormularyComponent implements OnInit {
         }); 
     }else{
       this.userService.createUser(values).subscribe((data: User) => {
-        console.log(values);
         Swal.fire({
           title: 'Excelente!',
           text: `El nuevo usuario ${data.first_name} ${data.last_name} se ha guardado satisfactoriamente`,

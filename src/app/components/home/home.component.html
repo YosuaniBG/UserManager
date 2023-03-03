@@ -1,34 +1,4 @@
-<div class="row row-cols-md-4 g-4">
-  <div class="col" *ngFor="let item of usersList">
-    <div class="card pt-3 h-100 shadow text-dark bg-light">
-      <img
-        [src]="item?.image"
-        class="m-auto d-block float-end rounded-circle w-75"
-        alt="..."
-      />
-      <div class="card-body">
-        <h5 class="card-title text-center">
-          {{ item?.first_name }} {{ item?.last_name }}
-        </h5>
-      </div>
-      <div class="d-flex justify-content-around card-footer py-3">
-        <div class="text-center">
-          <i class="fa-solid fa-magnifying-glass" [routerLink]="['/user', item._id]" routerLinkActive="router-link-active"></i>
-          <p class="text-muted">Ver detalles</p>
-        </div>
-        <div class="text-center">
-          <i class="fa-solid fa-arrow-rotate-right" [routerLink]="['/updateuser', item._id]" routerLinkActive="router-link-active" ></i>
-          <p class="text-muted">Actualizar</p>
-        </div>
-        <div class="text-center">
-          <i class="fa-solid fa-trash-can"></i>
-          <p class="text-muted">Borrar</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<nav aria-label="Page navigation example" class="mt-4">
+<nav aria-label="Page navigation example" class="mt-3">
   <ul class="pagination justify-content-center">
     <li class="page-item disabled">
       <a class="page-link">Anterior</a>
@@ -41,3 +11,34 @@
     </li>
   </ul>
 </nav>
+<div class="row row-cols-md-5 g-3 mt-2">
+  <div class="col" *ngFor="let item of usersList">
+    <div class="card pt-3 h-100 shadow text-dark bg-light">
+      <img
+        [src]="item?.image"
+        class="m-auto d-block float-end rounded-circle w-75"
+        alt="..."
+      />
+      <div class="card-body">
+        <h6 class="card-title text-center">
+          {{ item?.first_name }} {{ item?.last_name }}
+        </h6>
+      </div>
+      <div class="d-flex justify-content-around card-footer py-3">
+        <div class="text-center">
+          <i class="fa-solid fa-magnifying-glass" [routerLink]="['/user', item._id]" routerLinkActive="router-link-active"></i>
+          <p class="text-muted">Ver detalles</p>
+        </div>
+        <div class="text-center">
+          <i class="fa-solid fa-arrow-rotate-right" [routerLink]="['/updateuser', item._id]" routerLinkActive="router-link-active" ></i>
+          <p class="text-muted">Actualizar</p>
+        </div>
+        <div class="text-center">
+          <i class="fa-solid fa-trash-can" (click)="deleteUser(item?._id)"></i>
+          <p class="text-muted">Borrar</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

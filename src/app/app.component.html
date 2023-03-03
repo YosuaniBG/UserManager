@@ -1,27 +1,35 @@
-<nav class="bg-dark py-3">
-  <div
-    class="container text-light d-flex justify-content-between align-items-center"
-  >
-    <span class="fs-2">Navegador</span>
-    <div class="menu-container d-flex gap-3">
-      <a
-        [routerLink]="['/home']"
-        routerLinkActive="router-link-active"
-        class="text-decoration-none text-light"
-        >Home</a
-      >
-      <a
-        [routerLink]="['/newuser']"
-        routerLinkActive="router-link-active"
-        class="text-decoration-none text-light"
-        >Nuevo usuario</a
-      >
+<header>
+  <nav class="bg-dark py-3">
+    <div
+      class="container text-light d-flex justify-content-between align-items-center"
+    >
+      <span class="fs-2">Navegador</span>
+      <div class="menu-container d-flex gap-3">
+        <a
+          [routerLink]="['/home']"
+          routerLinkActive="router-link-active"
+          class="text-decoration-none text-light"
+          >Home</a
+        >
+        <a
+          [routerLink]="['/newuser']"
+          routerLinkActive="router-link-active"
+          class="text-decoration-none text-light"
+          >Nuevo usuario</a
+        >
+      </div>
     </div>
+  </nav>
+</header>
+<main>
+  <div class="container my-4">
+    <router-outlet></router-outlet>
   </div>
-</nav>
-<div class="container my-4">
-  <router-outlet></router-outlet>
-</div>
+</main>
+<footer class="bg-dark text-light p-2 d-flex flex-column align-items-center mt-3">
+  <small>Copyright@</small>
+  <!-- <small>Todos los derechos reservados</small> -->
+</footer>
 <!-- <nav class="bg-dark  py-3">
   <div class="bg-dark ">asasasasa</div>
 </nav> -->
