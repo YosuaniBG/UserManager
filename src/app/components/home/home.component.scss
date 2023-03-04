@@ -17,3 +17,13 @@ p{
         font-size: 12px;
     }
 }
+
+li{
+    &.page-item{
+        cursor: pointer;    
+    }
+
+    &.active, &.disabled{
+        cursor: auto;
+    }
+}

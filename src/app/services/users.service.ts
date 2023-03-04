@@ -14,8 +14,8 @@ export class UsersService {
   constructor(private httpClient: HttpClient) { 
   }
 
-  getUsers(): Observable<any>{
-    return this.httpClient.get<any>(this.url);
+  getUsers(page: number = 1): Observable<any>{
+    return this.httpClient.get<any>(`${this.url}?page=${page}`);
   }
 
   createUser(user: User): Observable<User>{

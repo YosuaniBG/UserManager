@@ -14,6 +14,8 @@ import Swal from 'sweetalert2';
 export class HomeComponent implements OnInit{
 
   usersList: User[] = [];
+  pages: number[] = [];
+  currentPage: number = 1;
 
   constructor(
     private userService: UsersService,
@@ -21,9 +23,23 @@ export class HomeComponent implements OnInit{
     ){}
 
   ngOnInit(): void {
-    this.userService.getUsers().subscribe(data => {
+    this.goToPage();
+  }
+
+  goToPage(page: number = 1): void{
+    this.userService.getUsers(page).subscribe(data => {
+      this.pages = this.pagination(data.total_pages);
+      this.currentPage = page;
       this.usersList = data.results;      
     })
+  }
+
+  pagination(pages: number): number[] {
+    let array = [];
+    for (let i = 1; i <= pages; i++) {
+      array.push(i);
+    }
+    return array;
   }
 
   deleteUser(usedId: any): void{
