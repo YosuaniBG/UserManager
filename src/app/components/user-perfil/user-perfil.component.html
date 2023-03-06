@@ -12,7 +12,7 @@
         <div class="btn-group" role="group" aria-label="Basic outlined example">
             <button type="button" class="btn btn-outline-dark" (click)="deleteUser(user._id)">Eliminar</button>
             <button type="button" class="btn btn-outline-dark" [routerLink]="['/updateuser', user._id]" routerLinkActive="router-link-active">Actualizar</button>
-            <button type="button" class="btn btn-outline-dark" (click)="goHome()">Volver al listado</button>
+            <button type="button" class="btn btn-outline-dark" [routerLink]="['/home']" routerLinkActive="router-link-active">Volver al listado</button>
         </div>
 
     </div>

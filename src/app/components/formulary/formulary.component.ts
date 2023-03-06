@@ -61,31 +61,52 @@ export class FormularyComponent implements OnInit {
         .then(result =>{
           if(result.isConfirmed)
           {
-            this.userService.updateUser(values).subscribe((data: User) => {
-              Swal.fire({
-                text: `Usuario ${data._id} actualizado!`,
-                confirmButtonColor: '#3085d6',
-                icon: 'success'
-              })
-              this.router.navigate(["/home"])
-              this.signForm.reset(); 
-            })
+            const gObservable = {
+              next: (data: User) => {
+                Swal.fire({
+                  text: `Usuario ${data._id} actualizado!`,
+                  confirmButtonColor: '#3085d6',
+                  icon: 'success'
+                })
+                this.router.navigate(["/home"])
+                this.signForm.reset(); 
+              },
+              error: (error: any) => {
+                Swal.fire({
+                  text: error.message,
+                  confirmButtonColor: '#3085d6',
+                  icon: 'warning'
+                })                
+              }
+            }
+            this.userService.updateUser(values).subscribe(gObservable)
           }      
         }); 
     }else{
-      this.userService.createUser(values).subscribe((data: User) => {
-        Swal.fire({
-          title: 'Excelente!',
-          text: `El nuevo usuario ${data.first_name} ${data.last_name} se ha guardado satisfactoriamente`,
-          icon: 'success',
-          confirmButtonColor: '#3085d6',
-          footer: `ID asignado: ${data.id}`
-        })
-        .then(result =>{
-          if(result.isConfirmed)
-              this.router.navigate(["/home"])
-        }); 
-      });
+      const gObservable = {
+        next: (data: User) => {
+          Swal.fire({
+                title: 'Excelente!',
+                text: `El nuevo usuario ${data.first_name} ${data.last_name} se ha guardado satisfactoriamente`,
+                icon: 'success',
+                confirmButtonColor: '#3085d6',
+                footer: `ID asignado: ${data.id}`
+              })
+              .then(result =>{
+                if(result.isConfirmed)
+                    this.router.navigate(["/home"])
+              }); 
+        },
+        error: (error: any) => {
+          Swal.fire({
+            text: error.message,
+            confirmButtonColor: '#3085d6',
+            icon: 'warning'
+          })
+          
+        }
+      }
+      this.userService.createUser(values).subscribe(gObservable)
     }
 
     

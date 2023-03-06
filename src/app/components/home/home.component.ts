@@ -27,11 +27,21 @@ export class HomeComponent implements OnInit{
   }
 
   goToPage(page: number = 1): void{
-    this.userService.getUsers(page).subscribe(data => {
-      this.pages = this.pagination(data.total_pages);
-      this.currentPage = page;
-      this.usersList = data.results;      
-    })
+    const gObservable = {
+      next: (data: any) => {
+        this.pages = this.pagination(data.total_pages);
+        this.currentPage = page;
+        this.usersList = data.results;
+      },
+      error: (error: any) => {        
+        Swal.fire({
+          text: error.message,
+          confirmButtonColor: '#3085d6',
+          icon: 'warning',
+        });
+      },
+    };    
+    this.userService.getUsers(page).subscribe(gObservable)
   }
 
   pagination(pages: number): number[] {
@@ -53,13 +63,23 @@ export class HomeComponent implements OnInit{
     .then(result =>{
       if(result.isConfirmed)
       {
-        this.userService.deleteUser(usedId).subscribe((data: User) => {          
-          Swal.fire({
+        const gObservable = {
+          next: (data: User) => {
+            Swal.fire({
             text: `Usuario ${data._id} eliminado!`,
             confirmButtonColor: '#3085d6',
             icon: 'success'
-          })
-        })
+            })
+          },
+          error: (error: any) => {
+            Swal.fire({
+              text: error.message,
+              confirmButtonColor: '#3085d6',
+              icon: 'warning',
+            });
+          },
+        };
+        this.userService.deleteUser(usedId).subscribe(gObservable)
       }      
     }); 
 }
